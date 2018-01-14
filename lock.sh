@@ -1,5 +1,5 @@
 #!/bin/bash
 # Script unlock dropbear, webmin, squid3, openvpn, openssh
-# Dev by Sakariya
+# AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด
 read -p "Username : " Login
 usermod -L $Login
