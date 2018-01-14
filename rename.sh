@@ -1,5 +1,16 @@
 #!/bin/bash
-#AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด
+#
+#  =============== OS-32 & 64-bit ================
+#  ♦                                             ♦
+#  ♦     AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด   ♦
+#  ♦       -----------About Us------------       ♦ 
+#  ♦            Telp : 097-026-7262              ♦
+#  ♦         { VPN / SSH / OCS PANEL }           ♦ 
+#  ♦        http://facebook.com/Ceolnw           ♦    
+#  ♦             Line id : ceolnw                ♦
+#  ♦                                             ♦
+#  =============== OS-32 & 64-bit ================
+#
 printf "Enter the username you want to edit : "; read user
 if cat /etc/passwd |grep $user: >/dev/null 2>/dev/null
 then
