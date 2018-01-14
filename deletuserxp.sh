@@ -1,11 +1,11 @@
 #!/bin/bash
-#By Sakariya
+#AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด
 echo "
 =============================================
- credit : Dev By ADMIN SP-NET
- Facebook : https://www.facebook.com/profile.php?id=100009782145678 
- Line     : http://line.me/ti/p/Tr8OCQghLc
- Wallet   : 0951911696
+ credit   : www.เฮียเบิร์ด.com
+ Facebook : https://www.facebook.com/ceolnw 
+ Massenger: http://m.me/ceolnw
+ Wallet   : 097-026-7262
  ============================================="
 echo -e "         \033[1;33mRemover Usuarios Expirados\033[0m"
 datahoje=$(date +%s)
