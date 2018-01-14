@@ -1,4 +1,4 @@
-#By sakariya
+#AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด
 
 echo -e ""
 	echo -e "Total Data Usage:"
