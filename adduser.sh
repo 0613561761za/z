@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "-------------------------------"
 # Script multiple login ssh user dropbear, webmin, squid3, openvpn, openssh
-# Dev by Royyeem
+# AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด
 
 read -p "Username : " Login
 read -p "Password : " Passwd
