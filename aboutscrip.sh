@@ -1,12 +1,21 @@
 #!/bin/bash
-#����ǡѺʤ�Ի���
+#AUTOSCRIPT CREATED BY เฮียเบิร์ด
 
 clear
-echo -e "Auto Install SSH OVPN" 
-echo -e ""
-echo -e "For Debian 7-8"
-echo -e "For VPS&Cloud"
-echo -e ""
-echo -e "Script BY SP-NET:"
-echo -e "Line http://line.me/ti/p/Tr8OCQghLc"
-echo -e ""
+echo ""
+          echo -e "\e[033;1m     
+                         
+      =============== OS-32 & 64-bit ================
+      ♦                                             ♦
+      ♦     AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด   ♦
+      ♦       -----------About Us------------       ♦ 
+      ♦            Telp : 097-026-7262              ♦
+      ♦         { VPN / SSH / OCS PANEL }           ♦ 
+      ♦         http://facebook.com/Ceolnw          ♦    
+      ♦             Line id : ceolnw                ♦
+      ♦                                             ♦
+      =============== OS-32 & 64-bit ================
+                
+          >>>>> Thank You For Choice Us <<<<<"
+			
+	echo ""
