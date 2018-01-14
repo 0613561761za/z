@@ -1,5 +1,5 @@
 #!/bin/bash
-#By Sakariya
+#AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด
 printf "Enter the username you want to edit : "; read user
 if cat /etc/passwd |grep $user: >/dev/null 2>/dev/null
 then
