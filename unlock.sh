@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script unlock dropbear, webmin, squid3, openvpn, openssh
-# Dev by Sakariya
+# AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด
 echo -e "Please in put name user for unlock or unbanned user"
 
 read -p "Username : " Login
