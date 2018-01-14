@@ -1,6 +1,6 @@
 #!/bin/bash
 #Script del SSH & OpenVPN
-read -p "SSH user name will be removed : " User
+read -p "ใส่ชื่อผู้ใช้ SSH & OpenVPN จะลบออก : " User
 
 if getent passwd $User > /dev/null 2>&1; then
         userdel $User
