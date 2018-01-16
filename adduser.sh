@@ -13,57 +13,26 @@ echo "-------------------------------"
 #  =============== OS-32 & 64-bit ================
 #
 
-read -p "Username : " Login
-read -p "Password : " Passwd
-read -p "Expired (Day): " TimeActive
-IP=`dig +short myip.opendns.com @resolver1.opendns.com`
-echo -e "\033[1;31m" 
-useradd -e `date -d "$TimeActive days" +"%Y-%m-%d"` -s /bin/false -M $Login
-echo -e "\033[0m" 
-exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
-echo -e "$Passwd\n$Passwd\n"|passwd $Login &> /dev/null
-echo "hard maxsyslogins 1" >> /etc/security/limits.conf
-echo "AllowUsers $Login" >> /etc/security/limits.conf
-echo "MaxSessions 1" >> /etc/security/limits.conf
-echo "* hard maxsyslogins 1" >> /etc/security/limits.conf
-echo -e "\033[1;32m" 
-echo -e "====SSH Account===="
-echo -e "Host : $IP" 
-echo -e "Port : 443"
-echo -e "User : $Login"
-echo -e "Pass : $Passwd"
-echo -e "Proxy : $IP:8080,"
-echo -e "=======Payload======="
-echo -e "CONNECT [host_port]@lvs.truehits.in.th [protocol][crlf]Host: smile.naver.jp[crlf][crlf]"
-echo -e ""
-echo -e "====OpenVPN Account===="
-echo -e "Config OpenVPN (TCP 1194)"
-echo -e " Download File "
-echo -e "http://$IP:81/$Login.ovpn"
-echo -e "******************************"
-echo -e "Out of date : $exp"
-echo -e "============================="
-echo -e "Line http://line.me/ti/p/Tr8OCQghLc"
-echo -e "\033[1;32m" 
-echo "client
+	echo ""
+	read -p "Username : " Login
+	echo ""
+	read -p "Password : " Passwd
+	echo ""
+	read -p "Expired (Day) : " TimeActive
+
+	IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+	useradd -e `date -d "$TimeActive days" +"%Y-%m-%d"` -s /bin/false -M $Login
+	exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
+	echo -e "$Passwd\n$Passwd\n"|passwd $Login &> /dev/null
+
+cd /etc/openvpn/
+cat > /etc/openvpn/$Login.ovpn <<END
+client
 dev tun
 proto tcp
-<connection>
-remote เซิฟSG"ใช้ทั่วไป" 999 udp
-remote $IP:1194@smile-static.tlcdn4.com.naver.jp
-</connection>
-http-proxy-retry 
+remote $IP:1194@static.tlcdn1.com/cdn.line-apps.com/line.naver.jp/nelo2-col.linecorp.com/mdm01.cpall.co.th/lvs.truehits.in.th/dl-obs.official.line.naver.jp 1194
 http-proxy $IP 8080
-http-proxy-option CUSTOM-HEADER Host ps.line.naver.jp
-http-proxy-option CUSTOM-HEADER Close
-http-proxy-option CUSTOM-HEADER Keep-Alive
-http-proxy-option CUSTOM-HEADER [ua]
-http-proxy-option CUSTOM-HEADER 21777
-route-method exe
-dhcp-option DNS 8.8.8.8
-dhcp-option DNS 8.8.4.4
-dhcp-option DOMAIN www.google.com
-dhcp-option DOMAIN www.youtube.com
+http-proxy-retry
 connect-retry 1
 connect-timeout 120
 resolv-retry infinite
@@ -75,21 +44,21 @@ persist-key
 persist-tun
 persist-remote-ip
 mute-replay-warnings
-verb 2
+verb 3
 sndbuf 393216
 rcvbuf 393216
-push 'sndbuf 393216'
-push 'rcvbuf 393216'
-auth-user-pass
-cipher none
-comp-lzo
-script-security 3
-
+push "sndbuf 393216"
+push "rcvbuf 393216"
 <auth-user-pass>
 $Login
 $Passwd
 </auth-user-pass>
-
+cipher none
+comp-lzo
+script-security 3
+key-proxy-DNS 8.8.8.8
+key-proxy-DNS 8.8.4.4
+management 127.0.0.1 5555
 <ca>
 -----BEGIN CERTIFICATE-----
 MIID4DCCA0mgAwIBAgIJAM3S4jaLTQBoMA0GCSqGSIb3DQEBBQUAMIGnMQswCQYD
@@ -114,5 +83,41 @@ A4GBAL3ScsXaFFuBqkS8bDqDUkx2hYM2iAYx9ZEuz8DOgtenQiNcyety4YzWSE5b
 1/4JSlrO0hoFAZpz6tZtB9XM5efx5zSEIn+w4+2bWUk34Ro2zM3JxwDUp1tTcpbT
 T0G3VTuVrzgSMZV1unfbCHk6XR4VT3MmmoTl+97cmmMZgWV0
 -----END CERTIFICATE-----
-</ca>" > /home/vps/public_html/$Login.ovpn
+</ca>
+END
 
+	cp $Login.ovpn /home/vps/public_html/
+	cd
+	if [ ! -e /usr/local/bin/payload ]; then
+        wget -O /usr/local/bin/payload "https://raw.githubusercontent.com/nwqionnwkn/OPENEXTRA/master/Config/payload"
+	chmod +x /usr/local/bin/payload
+        fi
+	clear
+	cd
+	echo -e ""
+	echo -e "======== Account ============"
+	echo -e "Download Config	: http://$IP:85/$Login.ovpn"
+	echo -e "Username	: $Login"
+	echo -e "Password	: $Passwd"
+	echo -e "Out of Date	: $exp"
+	echo -e ""
+	echo -e "ไฟล์เดียวสามารถใช้ได้ทั้งเครือข่าย Truemove และ Dtac"
+	echo -e "หมายเหตุ : สำหรับ Truemove ใช้ได้เฉพาะซิมแบบเติมเงินเท่านั้น"
+	echo -e "หมายเหตุ : สำหรับ Dtac ต้องสมัครโปรฯ Line ถึงจะสามารถใช้งาน VPN ได้"
+        echo -e ""
+        echo -e "นอกจากจะสามารถใช้งานผ่านแอพฯ OpenVPN Connect ได้แล้ว..."
+	echo -e "ยังสามารถใช้งานได้ทั้งแอพฯ HTTP Injector ,Ki4a ,eProxy ,KPN Tunnel"
+	echo -e "และแอพฯจำพวก HTTP อีกมากมาย..."
+	echo -e ""
+	echo -e "หากต้องการรูปแบบข้อมูลหรือเพโหลด... ให้พิมพ์คำสั่ง payload"
+	echo -e "IP         : $IP"
+	echo -e "Proxy      : $IP"
+	echo -e "Port Proxy : 8080"
+	echo -e ""
+	echo -e "หมายเหตุ : ขณะนี้ยังไม่สามารถใช้งานผ่านทางคอมพิวเตอร์ได้ กำลังทำการแก้ไข"
+	echo -e "============================="
+	echo -e ""
+
+elif test $x -eq 2; then
+	echo ""
+	read -p "Username : " User
